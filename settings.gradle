@@ -1,0 +1,3 @@
+rootProject.name = 'eventuate-examples-java-aws-gateway-echo'
+include 'echo-lambda'
+

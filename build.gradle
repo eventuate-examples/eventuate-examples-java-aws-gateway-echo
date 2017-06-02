@@ -1,0 +1,33 @@
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.11'
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile "com.amazonaws:aws-lambda-java-core:1.1.0"
+    compile "com.amazonaws:aws-java-sdk-dynamodb:$awsJavaSdkVersion"
+    compile 'ch.qos.logback:logback-core:1.0.1'
+    compile 'ch.qos.logback:logback-classic:1.0.1'
+    compile 'commons-lang:commons-lang:2.6'
+
+    testCompile "junit:junit:4.11"
+}
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.runtime
+    }
+}
+
+build.dependsOn buildZip

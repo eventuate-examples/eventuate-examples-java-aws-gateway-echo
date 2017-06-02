@@ -1,0 +1,34 @@
+service: java-aws-gateway-echo
+
+package:
+  artifact: build/distributions/eventuate-examples-java-aws-gateway-echo.zip
+
+provider:
+  name: aws
+  runtime: java8
+  timeout: 10
+  stage: dev
+
+plugins:
+  - eventuate-aws-gateway-serverless-plugin
+
+functions:
+  todoEchoLambda:
+    handler: io.eventuate.awsgateway.echo.EchoLambdaHandler
+    events:
+      - eventuate:
+          subscriberId: todoSampleLambdaEchoEventHandler
+          space: default
+          entitiesAndEventTypes:
+            net.chrisrichardson.eventstore.examples.todolist.todoservice.backend.domain.TodoAggregate:
+              - net.chrisrichardson.eventstore.examples.todolist.common.event.TodoCreatedEvent
+              - net.chrisrichardson.eventstore.examples.todolist.common.event.TodoUpdatedEvent
+              - net.chrisrichardson.eventstore.examples.todolist.common.event.TodoDeletedEvent
+            net.chrisrichardson.eventstore.examples.todolist.todoservice.backend.domain.TodoBulkDeleteAggregate:
+              - net.chrisrichardson.eventstore.examples.todolist.common.event.TodoDeletionRequestedEvent
+            net.chrisrichardson.eventstore.examples.todolist.backend.domain.TodoAggregate:
+              - net.chrisrichardson.eventstore.examples.todolist.common.event.TodoCreatedEvent
+              - net.chrisrichardson.eventstore.examples.todolist.common.event.TodoUpdatedEvent
+              - net.chrisrichardson.eventstore.examples.todolist.common.event.TodoDeletedEvent
+            net.chrisrichardson.eventstore.examples.todolist.backend.backend.domain.TodoBulkDeleteAggregate:
+              - net.chrisrichardson.eventstore.examples.todolist.common.event.TodoDeletionRequestedEvent

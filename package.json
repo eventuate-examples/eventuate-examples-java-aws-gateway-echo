@@ -1,0 +1,23 @@
+{
+  "name": "eventuate-examples-java-aws-gateway-echo",
+  "version": "1.0.0",
+  "description": "This is a simple [Serverless framework](http://serverless.com/)-based AWS lambda function that illustrates how to subscribe to events published by Eventuate.",
+  "main": "index.js",
+  "dependencies": {
+    "eventuate-aws-gateway-serverless-plugin": "0.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eventuate-examples/eventuate-examples-java-aws-gateway-echo"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/eventuate-examples/eventuate-examples-java-aws-gateway-echo/issues"
+  },
+  "homepage": "https://github.com/eventuate-examples/eventuate-examples-java-aws-gateway-echo"
+}
